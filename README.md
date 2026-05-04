@@ -1,4 +1,4 @@
-# easyvalidation
+# Easy PHP Validation
 An easy-to-use, lightweight PHP Validation Class
 
 Each method requires at least two parameters-
@@ -16,12 +16,12 @@ Errors are contained in the $error property.
 ### With Composer
 
 ````shell
-composer require Edydeyemi/easyvalidation
+composer require Edydeyemi/easyphpvalidation
 ````
 
 //1. Create a new instance of the Class
 ````shell
-$v = new EasyValidation(); //Create a new instance of the class
+$v = new EasyPhpValidation(); //Create a new instance of the class
 ````
 
 //2. Set a field as required
