@@ -1,11 +1,11 @@
 {
-    "name": "edydeyemi/easyvalidation",
+    "name": "edydeyemi/easyphpvalidation",
     "description": "An easy-to-use, lightweight PHP Validation Class",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Edydeyemi\\EasyValidation\\": "src/"
+            "Edydeyemi\\EasyPhpValidation\\": "src/"
         }
     },
     "authors": [

@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Edydeyemi;
 
 /**
- * Summary of EasyValidation
- * 
+ * Summary of EasyPhpValidation
  * @param string $errors Error meesage returned by method
  * @param string $field The name of form field to be validated.
  * @param mixed $value The value of form field to be validated/compared.
@@ -15,12 +14,12 @@ namespace Edydeyemi;
  * 
  * @return $this Instance of the class for method chaining. * 
  */
-class EasyValidation
+class EasyPhpValidation
 {
 
     public ?string $errors = null;
     private string $field;
-    private string $value;
+    private mixed $value;
     public array $bucket = [];
 
 
@@ -137,7 +136,7 @@ class EasyValidation
     }
 
 
-    public function equals($control)
+    public function equals(int|string $control)
     {
         if ($this->value !== $control) {
             $this->errors = $this->field . "_error";
@@ -148,6 +147,14 @@ class EasyValidation
 
     /**
      * NUMERIC VALIDATION
+     */
+
+
+    /**
+     * Validates if the value is lesser than the given control.
+     *
+     * @param int|float $control The value to compare against.
+     * @return $this Instance of the class for method chaining.
      */
     public function min(int|float $control)
     {
@@ -210,7 +217,7 @@ class EasyValidation
         return $this;
     }
 
-    function isToday($format = 'Y-m-d')
+    public function isToday($format = 'Y-m-d')
     {
         $today = \DateTime::createFromFormat($format, date($format, time()));
         $date = \DateTime::createFromFormat($format, $this->value);
@@ -259,7 +266,7 @@ class EasyValidation
         return $this;
     }
 
-    public function afterYesterday($format = 'Y-m-d')
+    public function afterYesterday(string $format = 'Y-m-d')
     {
         $today = \DateTime::createFromFormat($format, date($format, time()));
         $date = \DateTime::createFromFormat($format, $this->value);
@@ -317,10 +324,30 @@ class EasyValidation
         return $this;
     }
 
-    public function isValidLat()
+    // public function isValidLat()
+    // {
+
+    //     if (!is_numeric($this->value) || !(-90 <= $this->field) && !($this->field <= 90)) {
+    //         $this->errors = $this->field . "_error";
+    //     }
+    //     $this->storeValues();
+    //     return $this;
+    // }
+
+    // public function isValidLongt()
+    // {
+    //     if (!is_numeric($this->value) || !(-180 <= $this->field) && !($this->field <= 180)) {
+    //         $this->errors = $this->field . "_error";
+    //     }
+    //     $this->storeValues();
+    //     return $this;
+    // }
+
+
+     public function isValidLat()
     {
 
-        if (!is_numeric($this->value) || !(-90 <= $this->field) && !($this->field <= 90)) {
+        if (!is_numeric($this->value) || $this->value < -90 || $this->value > 90) {
             $this->errors = $this->field . "_error";
         }
         $this->storeValues();
@@ -329,7 +356,7 @@ class EasyValidation
 
     public function isValidLongt()
     {
-        if (!is_numeric($this->value) || !(-180 <= $this->field) && !($this->field <= 180)) {
+        if (!is_numeric($this->value) || $this->value < -180 || $this->value > 180) {
             $this->errors = $this->field . "_error";
         }
         $this->storeValues();
