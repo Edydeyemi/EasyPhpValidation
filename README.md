@@ -1,13 +1,14 @@
 # Easy PHP Validation
 An easy-to-use, lightweight PHP Validation Class
 
-Each method requires at least two parameters-
+The following parameters are required-
 1. The name of the form field
 2. The value to be validated
 
 All validation methods can be chained together i.e. 
 ````shell
-$v->setField('product_category', $product_cat_id)->required()->isNumeric()->notGreaterThan(10);
+$v->setField('product_category')->required($product_cat_id)->isNumeric()->notGreaterThan(10);
+$v->setField('promo_period')->required($promo_period)->isDate()->dateNotBefore('2026-06-01')->dateNotAfter('2026-12-31');
 ````
 Errors are contained in the $error property.
 
